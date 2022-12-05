@@ -6,6 +6,10 @@ import Table, { SelectColumnFilter, StatusPill, LocateCell } from "./component/t
 import { Switch } from "@headlessui/react";
 import MyPagination from "./component/pagination";
 import { Route, Routes } from "react-router-dom";
+import Login from "./component/login";
+import { ToastContainer } from "react-toastify";
+import Registration from "./component/registration";
+import Demo from "./component/demo";
 
 const getData = () => [
   {
@@ -261,12 +265,17 @@ function App() {
   // console.log("CPMP ---> ", companyData);
   return (
     <>
+    
+      <ToastContainer />
       <Header />
       {/* <Content /> */}
       <Routes>
         {/* <Route path="/" component={Home} exact />
         <Route path="/about" component={About} /> */}
         <Route path="/pagination" element={<MyPagination/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Registration/>} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
       {/* <Table columns={columns} data={data} /> */}
       {/* <Table columns={companyColumns} data={compData} /> */}

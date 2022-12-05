@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import apiService from "../services/api.service";
+import authHeader from "../services/auth-header";
 import Table, { SelectColumnFilter, StatusPill, LocateCell } from "./table";
 
 function MyPagination() {
@@ -63,13 +65,22 @@ function MyPagination() {
   }
 
   const getCompanyData = (currentPage, pageSize) => {
-    fetch(`http://localhost:8081/company/pagination?page=${currentPage}&size=${pageSize}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("ABCD", data);
-        // setCompData(data);
-        setCurrentPageData({compData: data.data, totalData: data.totalItems, currentPage: data.currentPage, pageSize})
-      });
+    apiService.getCompanyData().then(
+      (response) => {
+        console.log("Data", response.data);
+      },
+      (error) => {
+        console.log("Data", error);
+      }
+    )
+    
+    // fetch(`http://localhost:8081/company/pagination?page=${currentPage}&size=${pageSize}`,{ headers: authHeader() })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("ABCD", data);
+    //     // setCompData(data);
+    //     setCurrentPageData({compData: data.data, totalData: data.totalItems, currentPage: data.currentPage, pageSize})
+    //   });
   }
 
   useEffect(() => {
