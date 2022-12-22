@@ -1,11 +1,14 @@
-import { LockClosedIcon } from '@heroicons/react/20/solid'
-import React from 'react';
 import AuthService from "../services/auth.service";
+import React from 'react';
+import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
+    let navigate = useNavigate();
+
     let usernameInput = React.createRef();
     let passwordInput = React.createRef();
     // const [username, setUserName] = useState("");
@@ -26,19 +29,17 @@ export default function Login() {
 
         AuthService.login(state.email, state.password).then(
             () => {
-                //   this.props.router.navigate("/profile");
-                console.log("ABCD ANCD");
-                toast.success("Login Sucess", {
-                    position: toast.POSITION.TOP_CENTER,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                // window.location.reload();
+                navigate("/pagination"); 
+                // toast.success("Login Sucess", {
+                //     position: toast.POSITION.TOP_CENTER,
+                //     autoClose: 5000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: "light",
+                // });
             },
             error => {
                 const resMessage = "Invalid Credentials";

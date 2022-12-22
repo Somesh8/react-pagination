@@ -156,7 +156,7 @@ function Table({ columns, data, updatePageSize, updatePageNumber, currentPageDat
     // Render the UI for your table
     return (
         <>
-            <div className="bg-white py-12">
+            <div className="py-12">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     {headerGroups.map((headerGroup) =>
                         headerGroup.headers.map((column) =>
@@ -165,7 +165,7 @@ function Table({ columns, data, updatePageSize, updatePageNumber, currentPageDat
                             ) : null
                         )
                     )}
-                    <div className="mt-2 flex flex-col">
+                    <div className="relative bg-white mt-2 flex flex-col">
                         <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

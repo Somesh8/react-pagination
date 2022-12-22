@@ -29,10 +29,11 @@ export default function Registration() {
             fullname: firstnameInput.current.value.trim() + " " + lastnameInput.current.value.trim(),
             email: emailInput.current.value.trim(),
             age: ageInput.current.value,
-            password: passwordInput.current.value.trim()
+            password: passwordInput.current.value.trim(),
+            confirmPassword: confirmPasswordInput.current.value.trim()
         }
         // validations
-        if(state.password !== state.confirmPasswordInput) {
+        if(state.password !== state.confirmPassword) {
             toast.error("Password Not Matching", toastObj);
             return;
         }
@@ -71,7 +72,7 @@ export default function Registration() {
     }
     return (
 
-        <div className="lg:px-0">
+        <div className="flex min-h-full h-screen w-screen w-screen px-4 lg:px-0">
 
             {/*  CARD USING TAILWIND CSS
              <div className="relative bg-white w-full p-4 shadow-md lg:max-w-lg">
@@ -86,10 +87,10 @@ export default function Registration() {
                 </div>
             </div> */}
 
-            <div class="grid grid-cols-3">
+            <div class="w-screen grid grid-cols-3">
                 {/* Col 1 */}
                 <div class="col-span-2">
-                    <div className="mt-10 sm:mt-0 relative bg-white">
+                    <div className="mt-32 sm:mt-0 relative bg-white">
                         <div className="md:grid md:grid-cols-3 md:gap-6">
                             <div className="mt-5 md:col-span-3 md:mt-0">
                                 <div>

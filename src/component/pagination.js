@@ -31,15 +31,12 @@ function MyPagination() {
   const [currentPageData, setCurrentPageData] = useState(initPageData);
 
   const updatePageSize = (size) => {
-    console.log("upadating Size");
     setCurrentPageData({...currentPageData, pageSize:size})
     getCompanyData(currentPageData.currentPage, size);
-    console.log("DATA --> ",currentPageData)
     // { ...openWord, pol: true }
   }
 
   const updatePageNumber = (direction) => {
-    console.log("upadating Number ", direction)
     var first = 1;
     var last = Math.ceil(currentPageData.totalData / currentPageData.pageSize);
     if(direction === "next") {
@@ -60,36 +57,35 @@ function MyPagination() {
 
     }
     // setCurrentPageData({...currentPageData, pageSize:size})
-    console.log("DATA --> ",currentPageData)
     getCompanyData(currentPageData.currentPage, currentPageData.pageSize);
   }
 
   const getCompanyData = (currentPage, pageSize) => {
-    apiService.getCompanyData().then(
-      (response) => {
-        console.log("Data", response.data);
-      },
-      (error) => {
-        console.log("Data", error);
-      }
-    )
+    // apiService.getCompanyData().then(
+    //   () => {
+    //     console.log("Data "+"Sucess");
+    //   },
+    //   () => {
+    //     console.log("Data "+ "error");
+    //   }
+    // )
+
+    apiService.getTableData("user/",{currentPage, pageSize});
     
-    // fetch(`http://localhost:8081/company/pagination?page=${currentPage}&size=${pageSize}`,{ headers: authHeader() })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("ABCD", data);
-    //     // setCompData(data);
-    //     setCurrentPageData({compData: data.data, totalData: data.totalItems, currentPage: data.currentPage, pageSize})
-    //   });
+    fetch(`http://localhost:8081/company/pagination?page=${currentPage}&size=${pageSize}`,{ headers: authHeader() })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("ABCD", data);
+        // setCompData(data);
+        setCurrentPageData({compData: data.data, totalData: data.totalItems, currentPage: data.currentPage, pageSize})
+      });
   }
 
   useEffect(() => {
     getCompanyData(1, 3);
-    console.log("loading from pagination ->  ",currentPageData);
   }, [])
 
   useEffect(() => {
-    console.log("loading from pagination 2  ->  ",currentPageData);
   }, [currentPageData])
 
   return (
